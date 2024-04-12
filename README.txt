@@ -34,3 +34,10 @@ This program mimics the real-life game, where players show their hand gesture at
 
 Enjoy playing Rock-Paper-Scissors against the computer in the comfort of your terminal!
 
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE.txt file for details.
+
+**Attribution Notice:**
+While not legally required, it would be appreciated if you provide appropriate credit to the original author, Ken Joe Augustine, when using or distributing this code.
