@@ -66,7 +66,7 @@ def RPS():
                 break
         
         # End the game if the user has added additional num_rounds and these additional num_rounds have been completed
-        if num_rounds != -1 and total_rounds_played == num_rounds:
+        if num_rounds != -1  and end_game_prompted and total_rounds_played == num_rounds:
             break
 
     # Printing final scores
