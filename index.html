@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Useless Mini Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #e6f0ff);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #5a189a;
+    }
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1000px;
+    }
+
+    .project {
+      width: 180px;
+      height: 80px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 40px;
+      height: 20px;
+      background: #ccc;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+
+    .toggle-switch::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    .toggle-switch.active {
+      background: #4ade80;
+    }
+
+    .toggle-switch.active::before {
+      transform: translateX(20px);
+    }
+
+    .btn {
+      margin-top: 20px;
+      background: #5a189a;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .phantom-fish {
+      position: fixed;
+      bottom: 20px;
+      left: -200px;
+      width: 100px;
+      height: auto;
+      transition: left 5s linear;
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🌀 Useless Mini Projects 🌀</h1>
+  <div class="projects" id="projectsContainer">
+    <div class="project" onclick="toggleProject('fontSwap')">🍪 Font Swap Frenzy <div class="toggle-switch" id="fontSwap"></div></div>
+    <div class="project" onclick="toggleProject('misaligned')">🪓 Misaligned Mode <div class="toggle-switch" id="misaligned"></div></div>
+    <div class="project" onclick="toggleProject('moodColors')">🎨 Mood Swing Colors <div class="toggle-switch" id="moodColors"></div></div>
+    <div class="project" onclick="reverseText()">🔁 Reverse Text</div>
+    <div class="project" onclick="increaseTextSize()">🟣 EASY Read Mode</div>
+    <div class="project" onclick="toggleDarkGroups()">🌗 Half Dark Mode</div>
+    <div class="project" onclick="swapIdentity()">🧠 Identity Frenzy</div>
+    <div class="project" onclick="tornadoSpin()">🌀 Tornado Mode</div>
+    <div class="project" onclick="toggleProject('neonFlashbang')">💡 Neon Flashbang <div class="toggle-switch" id="neonFlashbang"></div></div>
+    <div class="project" onclick="toggleProject('catFacts')">🐱 Cat Facts Overload <div class="toggle-switch" id="catFacts"></div></div>
+    <div class="project" onclick="toggleProject('wackyWobble')">😎 Wacky Wobble <div class="toggle-switch" id="wackyWobble"></div></div>
+    <div class="project" onclick="toggleProject('magneticCursor')">🧲 Magnetic Cursor <div class="toggle-switch" id="magneticCursor"></div></div>
+    <div class="project" onclick="toggleProject('zoomyMode')">🔍 Zoomy Mode <div class="toggle-switch" id="zoomyMode"></div></div>
+    <div class="project" onclick="toggleProject('phantomFish')">🐟 Phantom Fish <div class="toggle-switch" id="phantomFish"></div></div>
+  </div>
+  <button class="btn" onclick="resetAll()">🔄 Reset All</button>
+  <button class="btn" id="moreBtn" onclick="moveMoreBtn()">✨ Click for More Mini Projects</button>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Fish_icon.svg/2048px-Fish_icon.svg.png" class="phantom-fish" id="fish" style="display:none;">
+
+  <script>
+    const toggles = {};
+
+    function toggleProject(id) {
+      const el = document.getElementById(id);
+      const active = el.classList.toggle('active');
+      toggles[id] = active;
+
+      if (id === 'fontSwap') {
+        if (active) {
+          startFontSwap();
+        }
+      } else if (id === 'misaligned') {
+        document.querySelectorAll('.project').forEach(p => {
+          p.style.position = active ? 'relative' : '';
+        });
+        if (active) misalignLoop();
+      } else if (id === 'moodColors') {
+        if (active) colorCycle();
+      } else if (id === 'catFacts') {
+        if (active) startCatFacts(); else clearFacts();
+      } else if (id === 'neonFlashbang') {
+        if (active) neonFlash();
+      } else if (id === 'wackyWobble') {
+        document.querySelectorAll('.project').forEach(p => {
+          p.style.animation = active ? 'wobble 0.3s infinite' : '';
+        });
+      } else if (id === 'magneticCursor') {
+        if (active) {
+          document.addEventListener('mousemove', magneticMove);
+        } else {
+          document.removeEventListener('mousemove', magneticMove);
+          document.querySelectorAll('.project').forEach(p => p.style.transform = '');
+        }
+      } else if (id === 'zoomyMode') {
+        document.body.style.animation = active ? 'zoomy 2s infinite' : '';
+      } else if (id === 'phantomFish') {
+        const fish = document.getElementById('fish');
+        if (active) {
+          fish.style.display = 'block';
+          fish.style.left = '-200px';
+          setTimeout(() => fish.style.left = '120%');
+        } else {
+          fish.style.display = 'none';
+        }
+      }
+    }
+
+    function reverseText() {
+      document.querySelectorAll('body *:not(script):not(style)').forEach(el => {
+        if (el.children.length === 0 && el.textContent.trim()) {
+          el.textContent = el.textContent.split('').reverse().join('');
+        }
+      });
+    }
+
+    function increaseTextSize() {
+      document.body.style.fontSize = (parseFloat(getComputedStyle(document.body).fontSize) + 2) + 'px';
+    }
+
+    function toggleDarkGroups() {
+      const projects = document.querySelectorAll('.project');
+      const half = Math.floor(projects.length / 2);
+      const group = [...projects].sort(() => 0.5 - Math.random()).slice(0, half);
+      projects.forEach(p => p.style.background = '#fff');
+      group.forEach(p => p.style.background = '#111');
+    }
+
+    function swapIdentity() {
+      const texts = [...document.querySelectorAll('.project')].map(p => p.innerText.split('\n')[0]);
+      const shuffled = texts.sort(() => 0.5 - Math.random());
+      document.querySelectorAll('.project').forEach((p, i) => p.childNodes[0].textContent = shuffled[i]);
+    }
+
+    function tornadoSpin() {
+      document.querySelectorAll('.project').forEach(p => {
+        p.style.position = 'absolute';
+        p.style.top = Math.random() * window.innerHeight + 'px';
+        p.style.left = Math.random() * window.innerWidth + 'px';
+        p.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+      });
+    }
+
+    function resetAll() {
+      location.reload();
+    }
+
+    function moveMoreBtn() {
+      const btn = document.getElementById('moreBtn');
+      btn.style.position = 'absolute';
+      btn.style.left = Math.random() * 80 + '%';
+      btn.style.top = Math.random() * 80 + '%';
+    }
+
+    function misalignLoop() {
+      if (!toggles['misaligned']) return;
+      document.querySelectorAll('.project').forEach(p => {
+        p.style.top = Math.random() * 30 - 15 + 'px';
+        p.style.left = Math.random() * 30 - 15 + 'px';
+      });
+      setTimeout(misalignLoop, 500);
+    }
+
+    function colorCycle() {
+      if (!toggles['moodColors']) return;
+      document.querySelectorAll('.project').forEach(p => {
+        p.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      });
+      setTimeout(colorCycle, 1000);
+    }
+
+    function neonFlash() {
+      if (!toggles['neonFlashbang']) return;
+      document.body.style.background = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      setTimeout(neonFlash, 200);
+    }
+
+    function startFontSwap() {
+      const fonts = ['cursive', 'monospace', 'fantasy', 'serif', 'sans-serif'];
+      const interval = setInterval(() => {
+        if (!toggles['fontSwap']) {
+          clearInterval(interval);
+          return;
+        }
+        document.body.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+      }, 500);
+    }
+
+    function startCatFacts() {
+      const facts = [
+        "Cats sleep 70% of their lives!",
+        "A group of cats is called a clowder.",
+        "Cats can rotate their ears 180 degrees.",
+        "The oldest cat lived to 38!",
+        "Cats have five toes on their front paws, four on the back.",
+        "They can jump up to six times their length!",
+        "Cats have over 20 muscles controlling their ears."
+      ];
+      const factInterval = setInterval(() => {
+        if (!toggles['catFacts']) {
+          clearInterval(factInterval);
+          return;
+        }
+        const div = document.createElement('div');
+        div.textContent = facts[Math.floor(Math.random() * facts.length)];
+        div.style.position = 'fixed';
+        div.style.top = Math.random() * 100 + '%';
+        div.style.left = Math.random() * 100 + '%';
+        div.style.background = '#fff';
+        div.style.padding = '5px 10px';
+        div.style.border = '1px solid #ccc';
+        div.style.zIndex = '999';
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 4000);
+      }, 800);
+    }
+
+    function clearFacts() {
+      document.querySelectorAll('body > div').forEach(d => {
+        if (d.textContent.includes('Cats') || d.textContent.includes('cat')) d.remove();
+      });
+    }
+
+    function magneticMove(e) {
+      document.querySelectorAll('.project').forEach(p => {
+        const rect = p.getBoundingClientRect();
+        const dx = (e.clientX - (rect.left + rect.width / 2)) / 50;
+        const dy = (e.clientY - (rect.top + rect.height / 2)) / 50;
+        p.style.transform = `translate(${dx}px, ${dy}px)`;
+      });
+    }
+  </script>
+  <style>
+    @keyframes wobble {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      75% { transform: rotate(3deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes zoomy {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</body>
+
+</html>
