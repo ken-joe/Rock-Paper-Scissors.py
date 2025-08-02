@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Useless Web</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to bottom right, #000000, #111111);
+      background-size: 100% 100%;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 1em;
+      font-size: 2em;
+      font-weight: bold;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .container {
+      margin-top: 100px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .useless-icon {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 2rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+
+    .useless-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #111;
+      color: white;
+      padding: 2rem;
+      border: 2px solid #fff;
+      z-index: 1000;
+    }
+
+    .close-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    #brightnessControl {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 10px;
+      width: 150px;
+    }
+
+    .spinner {
+      border: 8px solid #ccc;
+      border-top: 8px solid #09f;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spinSpinner 1s linear infinite;
+      margin: 1rem auto;
+    }
+
+    @keyframes spinSpinner {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #mouseFollower {
+      position: absolute;
+      background: yellow;
+      color: black;
+      padding: 2px 5px;
+      border-radius: 4px;
+      pointer-events: none;
+      font-size: 12px;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div id="contentWrapper">
+    <header>Useless Web</header>
+
+    <div class="container">
+      <div class="useless-icon" onclick="showPopup('captcha')">🔒 Never-ending Captcha</div>
+      <div class="useless-icon" onclick="showPopup('darkmode')">🌙 Fake Dark Mode</div>
+      <div class="useless-icon" onclick="showPopup('quote')">🧠 Demotivational Quote</div>
+      <div class="useless-icon" onclick="showPopup('spinner')">⏳ Infinite Loading Spinner</div>
+      <div class="useless-icon" onclick="showPopup('ai')">🤖 AI Enhancer</div>
+      <div class="useless-icon" onclick="showPopup('login')">🔐 Fake Login</div>
+      <div class="useless-icon" id="clickMore" onclick="moveButton(this)">🌀 Click here for more</div>
+      <div class="useless-icon" onclick="startCountdown()">⏲️ Countdown to Nothing</div>
+      <div class="useless-icon" onclick="showRandomFact()">📚 Random Fact</div>
+      <div class="useless-icon" onclick="playUselessSound()">🔊 Useless Sound</div>
+      <div class="useless-icon" onclick="alert('You clicked it. Nothing happened.')">❓ Mystery Button</div>
+    </div>
+
+    <div id="captcha" class="popup">
+      <p>Prove you're not a robot... again:</p>
+      <input type="checkbox" onclick="resetCaptcha(this)"> I am not a robot<br><br>
+      <button class="close-btn" onclick="closePopup('captcha')">Give up</button>
+    </div>
+
+    <div id="darkmode" class="popup">
+      <p id="brightModeMessage">Activating dark mode...</p>
+      <button onclick="fakeDarkMode()">Activate</button><br><br>
+      <button class="close-btn" onclick="closePopup('darkmode')">Escape</button>
+    </div>
+
+    <div id="quote" class="popup">
+      <p id="quoteText"></p>
+      <button onclick="generateQuote()">Give me another</button><br><br>
+      <button class="close-btn" onclick="closePopup('quote')">Enough wisdom</button>
+    </div>
+
+    <div id="spinner" class="popup">
+      <p>Loading your request...</p>
+      <div class="spinner"></div>
+      <p>Please wait... forever.</p>
+      <button class="close-btn" onclick="closePopup('spinner')">Nevermind</button>
+    </div>
+
+    <div id="ai" class="popup">
+      <p>Enhancing with AI...</p>
+      <p><em>... still enhancing ...</em></p>
+      <p><strong>Result:</strong> Your content has been enhanced from "meh" to "still meh".</p>
+      <button class="close-btn" onclick="closePopup('ai')">Disappointed</button>
+    </div>
+
+    <div id="login" class="popup">
+      <p>Please login to continue:</p>
+      <input type="text" placeholder="Username"><br><br>
+      <input type="password" placeholder="Password"><br><br>
+      <button onclick="alert('Wrong credentials! Try again forever.')">Login</button><br><br>
+      <button class="close-btn" onclick="closePopup('login')">Give up</button>
+    </div>
+
+    <div id="brightnessControl">
+      <label for="slider">🌞 Brightness</label>
+      <input type="range" min="50" max="130" value="100" id="slider" oninput="adjustBrightness(this.value)">
+    </div>
+
+    <div id="mouseFollower">👁️ Watching...</div>
+
+    <script>
+      const quotes = [
+        "Why try when you can fail in style?",
+        "Dreams are just unpaid overtime.",
+        "The early bird dies tired.",
+        "Motivation is temporary. Give up now.",
+        "Nobody believes in you. Not even me.",
+        "You miss 100% of the naps you don't take.",
+        "Believe in yourself. Or don’t. Whatever.",
+        "If at first you don’t succeed, skydiving isn’t for you."
+      ];
+
+      const facts = [
+        "Bananas are curved because they grow toward the sun.",
+        "A group of flamingos is called a flamboyance.",
+        "Scotland’s national animal is the unicorn.",
+        "Octopuses have three hearts.",
+        "Cows have best friends and get stressed when separated."
+      ];
+
+      function showPopup(id) {
+        document.getElementById(id).style.display = 'block';
+      }
+
+      function closePopup(id) {
+        document.getElementById(id).style.display = 'none';
+      }
+
+      function resetCaptcha(box) {
+        box.checked = false;
+        alert("Oops! Try again.");
+      }
+
+      function fakeDarkMode() {
+        document.getElementById('brightModeMessage').textContent = "Dark mode activated. It's now... slightly brighter?";
+      }
+
+      function generateQuote() {
+        const quote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById('quoteText').textContent = quote;
+      }
+
+      function adjustBrightness(val) {
+        const messages = [
+          "Brighter isn't always better...",
+          "Your eyes will thank you. Or not.",
+          "This changes nothing.",
+          "Why are you still sliding this?",
+          "Keep going, maybe it’ll do something...",
+          "Spoiler: it won’t."
+        ];
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
+
+      function moveButton(el) {
+        el.style.position = 'absolute';
+        el.style.top = Math.floor(Math.random() * (window.innerHeight - 100)) + 'px';
+        el.style.left = Math.floor(Math.random() * (window.innerWidth - 100)) + 'px';
+      }
+
+      function startCountdown() {
+        let seconds = 5;
+        const interval = setInterval(() => {
+          if (seconds <= 0) {
+            alert("...and nothing happened.");
+            clearInterval(interval);
+          } else {
+            console.log(`Countdown: ${seconds}`);
+            seconds--;
+          }
+        }, 1000);
+      }
+
+      function showRandomFact() {
+        alert(facts[Math.floor(Math.random() * facts.length)]);
+      }
+
+      function playUselessSound() {
+        const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+        audio.play();
+      }
+
+      document.addEventListener('mousemove', function(e) {
+        const follower = document.getElementById('mouseFollower');
+        follower.style.left = (e.pageX + 10) + 'px';
+        follower.style.top = (e.pageY + 10) + 'px';
+      });
+    </script>
+</body>
+</html>
