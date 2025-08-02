@@ -1,55 +1,58 @@
-## 🎮 Introduction
-Play the classic game of Rock-Paper-Scissors against the computer right in your terminal!
+<img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
+
+
+# USELESS WEB
+
+
+## Basic Details
+### Team Name: ERROR 404
+
+
+### Team Members
+- Team Lead: Ken Joe Augustine - AISAT
+- Member 2: Aswin Sreekumar - AISAT
+
+
+### Project Description
+Useless Web is a parody website filled with intentionally pointless and mildly annoying interactions. It's a playful take on bad UX and absurd design, made purely to confuse, irritate, and amuse.
+
+### The Problem (that doesn't exist)
+People are far too productive and sane while browsing the internet. There’s a dire lack of websites that waste time, fry brain cells, and test human patience for absolutely no reason. We're here to fix that.
+
+### The Solution (that nobody asked for)
+We built a glorious collection of digital nonsense — from infinite CAPTCHAs to fake logins and demotivational wisdom — all carefully designed to irritate, confuse, and entertain. It’s the internet equivalent of poking your brain with a stick, just because we can.
+
+## Technical Details
+### Technologies/Components Used
+For Software:
+- HTML, CSS, JavaScript
+-  None (vanilla everything for maximum chaos)
+- None (we handcrafted the absurdity ourselves)]
+- VS Code, ChatGPT, Proplexity
+
+
+### Project Documentation
+For Software:
+
+# Screenshots 
+![image alt](https://github.com/ken-joe/useless/blob/efd6460c2e1ea81e3bb41deb3812cc1e7be28f08/Opera%20Snapshot_2025-08-02_221235_ken-joe.github.io.png)
+This is the main interface of Useless Web. Each tile represents a completely pointless mini-project — some with toggle switches, others with chaotic effects waiting to be triggered. It's neat now… but it won't stay that way for long.
+
+![image alt](https://github.com/ken-joe/useless/blob/6dfd17278f4d646847fba4518e6ea0270199f085/Opera%20Snapshot_2025-08-02_221650_ken-joe.github.io.png)
+A closer look at one of the mini-projects: Cat Facts Overload. Once toggled on, the screen fills with random, weird cat facts. It doesn’t stop until you turn it off. Why? No reason — that's the whole point.
+
+![image alt](https://github.com/ken-joe/useless/blob/af447f3f92d0607a6ba9915137ad83bb9512733c/Opera%20Snapshot_2025-08-02_221547_ken-joe.github.io.png)
+Here's what happens when you turn everything on. Fonts keep swapping, colors go wild, icons spin and wobble, text is reversed, and cat facts pop up everywhere. It's digital mayhem — exactly as intended.
+
+
+## Team Contributions
+- Ken Joe: Contributed to brainstorming and feature ideation, built core JavaScript functionalities, styled the UI components, and helped design the interactive behavior of each mini-project.
+- Aswin Sreekumar: Co-led brainstorming sessions, implemented interactive effects and animations, refined UI layout and responsiveness, and assisted in testing and debugging across all features.
+
 
 ---
+Made with ❤️ at TinkerHub Useless Projects 
 
-## 📝 How to Play
+![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
+![Static Badge](https://img.shields.io/badge/UselessProjects--25-25?link=https%3A%2F%2Fwww.tinkerhub.org%2Fevents%2FQ2Q1TQKX6Q%2FUseless%2520Projects)
 
-### 1️⃣ Run the Program
-Execute the following command in your terminal to start the game:
-python rock_paper_scissors.py
-
-2️⃣ Game Setup
-Follow the on-screen instructions to choose the number of rounds you want to play.
-
-3️⃣ Make Your Choice
-After each countdown, input your choice:
-
-Computer Wins: Type c
-You Win: Type u
-Tie: Type t
-
-4️⃣ Game Outcome
-The computer will randomly choose its action (rock, paper, or scissors) after each countdown.
-
-5️⃣ Winner Announcement
-After the specified number of rounds, the program will announce the winner based on the total score.
-
-🎯 About the Game
-Rock-Paper-Scissors is a classic hand game usually played between two people. Each player simultaneously forms one of three shapes with their hand:
-
-Rock (a fist)
-Paper (an open hand)
-Scissors (a fist with the index and middle fingers extended, forming a V)
-
-📜 Game Rules
-Rock crushes scissors
-Scissors cuts paper
-Paper covers rock
-This program mimics the real-life game, where players show their hand gesture at the same time to determine the winner of each round.
-
-⚙️ Program Flow
-1️⃣ Game Start
-The program begins by asking you how many rounds you want to play.
-
-2️⃣ Computer's Choice
-It then initiates a countdown for the computer's choice (rock, paper, or scissors).
-
-3️⃣ Player Input
-You input your choice (c, u, or t) indicating who you think won the round.
-
-4️⃣ Game Repeats
-Steps 2-3 are repeated for the specified number of rounds.
-
-5️⃣ Final Result
-After all rounds are completed, the program announces the winner based on the total score.
